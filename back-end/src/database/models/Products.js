@@ -12,9 +12,9 @@ const Products = (sequelize, DataTypes) => {
     { timestamps: false},
     );
 
-    Products.associate = (models) => {
-        Products.belongsTo(models.SalesProducts, { as: 'salesProducts', foreignKey: 'productId' });
-	};
+  //   Products.associate = (models) => {
+  //       Products.belongsTo(models.SalesProducts, { as: 'salesProducts', foreignKey: 'productId' });
+	// };
 
 	return Products;
 };
