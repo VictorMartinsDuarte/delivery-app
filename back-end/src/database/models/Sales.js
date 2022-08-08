@@ -10,16 +10,16 @@ const Sales = (sequelize, DataTypes) => {
 		totalPrice: DataTypes.DECIMAL(9,2),
     deliveryAddress: DataTypes.STRING,
     deliveryNumber: DataTypes.STRING,
-    saleDate: DataTypes.DATETIME,
+    saleDate: DataTypes.DATE,
     status: DataTypes.STRING,
 	}, 
     { timestamps: false},
     );
 
-    Sales.associate = (models) => {
-      Sales.belongsTo(models.Users, { as: 'users', foreignKey: 'userId' });
-      Sales.belongsTo(models.Users, { as: 'users', foreignKey: 'sellerId' });
-	};
+  //   Sales.associate = (models) => {
+  //     Sales.belongsTo(models.Users, { as: 'users', foreignKey: 'userId' });
+  //     Sales.belongsTo(models.Users, { as: 'users', foreignKey: 'sellerId' });
+	// };
 
 	return Sales;
 };
