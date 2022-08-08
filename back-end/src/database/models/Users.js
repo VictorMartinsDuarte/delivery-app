@@ -10,7 +10,9 @@ const Users = (sequelize, DataTypes) => {
 		password: DataTypes.STRING,
     role: DataTypes.STRING,
 	}, 
-    { timestamps: false },
+    { timestamps: false,
+      underscored:true 
+    },
     );
 
   //   Users.associate = (models) => {
