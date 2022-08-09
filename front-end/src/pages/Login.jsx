@@ -1,30 +1,39 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import apiLogin from '../services/api';
 
 function Login() {
-  const valor6 = 6;
-
+  const MIN_LENGTH_PASSWORD = 6;
   const regex = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i;
-
   const history = useNavigate();
 
   const [email, setEmail] = useState('');
-  const [senha, setSenha] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState(false);
 
   function loginClick(event) {
     prop.enviaEmail(email);
     event.preventDefault();
     history.push('/home');
   }
+
   function cadastroClick() {
     history.push('/cadastro');
   }
-  console.log(email);
-  console.log(senha);
+
+  async function handleSubmit(event) {
+    event.preventDefault();
+    const userLogin = await apiLogin(email, password);
+    if (userLogin) {
+      setError(false);
+      history('/customer/products');
+    }
+    setError(true);
+  }
+
   return (
     <form id="container" onSubmit={ loginClick }>
       <div className="inputs">
-
         <input
           data-testid="common_login__input-email"
           type="email"
@@ -35,21 +44,19 @@ function Login() {
         <input
           data-testid="common_login__input-password"
           type="password"
-          value={ senha }
-          onChange={ (event) => setSenha(event.target.value) }
+          value={ password }
+          onChange={ (event) => setPassword(event.target.value) }
           minLength="6"
         />
-
       </div>
       <div className="btn">
-
         <button
           data-testid="common_login__button-login"
           type="submit"
-          disabled={ senha.length < valor6 || !email.match(regex) }
+          disabled={ password.length < MIN_LENGTH_PASSWORD || !email.match(regex) }
+          onClick={ handleSubmit }
         >
           LOGIN
-
         </button>
 
         <button
@@ -58,10 +65,15 @@ function Login() {
           onClick={ cadastroClick }
         >
           Ainda não tenho conta
-
         </button>
-
       </div>
+      {error && (
+        <div className="error-message">
+          <p data-testid="common_login__element-invalid-email">
+            Não foi possível fazer login.
+          </p>
+        </div>
+      )}
     </form>
   );
 }
