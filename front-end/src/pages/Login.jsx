@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import apiLogin from '../services/api';
+import { apiLogin } from '../services/api';
 
 function Login() {
   const MIN_LENGTH_PASSWORD = 6;
@@ -18,7 +18,6 @@ function Login() {
   }
 
   function registerClick() {
-    console.log('chegou aqui');
     navigate('/register');
   }
 

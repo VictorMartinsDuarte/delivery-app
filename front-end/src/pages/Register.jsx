@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import apiRegister from '../services/api';
+import { apiRegister } from '../services/api';
 
 function Register() {
   const MIN_LENGTH_PASSWORD = 6;
@@ -21,7 +21,7 @@ function Register() {
 
   async function handleSubmit(event) {
     event.preventDefault();
-    const userRegister = await apiRegister(email, password);
+    const userRegister = await apiRegister(name, email, password);
     if (userRegister) {
       setError(false);
       history('/customer/products');
