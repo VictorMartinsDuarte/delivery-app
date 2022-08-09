@@ -1,20 +1,77 @@
-// import React from 'react';
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import apiRegister from '../services/api';
 
-// function Cadastro() {
-//   return (
-//     <div id="container">
-//       <div className="inputs">
+function Register() {
+  const MIN_LENGTH_PASSWORD = 6;
+  const regex = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
+  const history = useNavigate();
 
-//         <input type="text" />
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [error, setError] = useState(false);
 
-//         <input type="text" />
+  function registerClick(event) {
+    prop.enviaEmail(email);
+    event.preventDefault();
+    history.push('/home');
+  }
 
-//       </div>
-//       <div className="btn">
-//         <button type="button">CADASTRAR</button>
-//       </div>
-//     </div>
-//   );
-// }
+  async function handleSubmit(event) {
+    event.preventDefault();
+    const userRegister = await apiRegister(email, password);
+    if (userRegister) {
+      setError(false);
+      history('/customer/products');
+    }
+    setError(true);
+  }
 
-// export default Cadastro;
+  return (
+    <form id="container" onSubmit={ registerClick }>
+      <div className="inputs">
+        <input
+          data-testid="common_register__input-name"
+          type="name"
+          value={ name }
+          onChange={ (event) => setName(event.target.value) }
+        />
+
+        <input
+          data-testid="common_Register__input-email"
+          type="email"
+          value={ email }
+          onChange={ (event) => setEmail(event.target.value) }
+        />
+
+        <input
+          data-testid="common_Register__input-password"
+          type="password"
+          value={ password }
+          onChange={ (event) => setPassword(event.target.value) }
+          minLength="6"
+        />
+      </div>
+      <div className="btn">
+        <button
+          data-testid="common_Register__button-Register"
+          type="submit"
+          disabled={ password.length < MIN_LENGTH_PASSWORD || !email.match(regex) }
+          onClick={ handleSubmit }
+        >
+          CADASTRAR
+        </button>
+      </div>
+      {error && (
+        <div className="error-message">
+          <p data-testid="common_Register__element-invalid-email">
+            Não foi possível fazer Register.
+          </p>
+        </div>
+      )}
+    </form>
+  );
+}
+
+export default Register;

@@ -5,7 +5,7 @@ import apiLogin from '../services/api';
 function Login() {
   const MIN_LENGTH_PASSWORD = 6;
   const regex = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
-  const history = useNavigate();
+  const navigate = useNavigate();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -14,11 +14,12 @@ function Login() {
   function loginClick(event) {
     prop.enviaEmail(email);
     event.preventDefault();
-    history.push('/home');
+    navigate('/home');
   }
 
   function registerClick() {
-    history.push('/register');
+    console.log('chegou aqui');
+    navigate('/register');
   }
 
   async function handleSubmit(event) {
@@ -26,7 +27,7 @@ function Login() {
     const userLogin = await apiLogin(email, password);
     if (userLogin) {
       setError(false);
-      history('/customer/products');
+      navigate('/customer/products');
     }
     setError(true);
   }
