@@ -12,5 +12,13 @@ const apiLogin = async (email, password) => {
     return false;
   }
 };
+const apiRegister = async (name, email, password) => {
+  try {
+    const response = await api.post('/register', { name, email, password });
+    return response.status;
+  } catch (err) {
+    return false;
+  }
+};
 
-export default apiLogin;
+export { apiLogin, apiRegister };

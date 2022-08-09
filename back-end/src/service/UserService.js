@@ -1,9 +1,15 @@
 const { Users } = require('../database/models');
 
-const FindUser = async (email, _senha) => {
+const FindUser = async (email) => {
   const foundUser = await Users.findOne({ where: { email } });
-  // console.log(foundUser);
   return foundUser;
 };
 
-module.exports = { FindUser };
+const CreateUser = async (name, email, password, role) => {
+  console.log('chegou aqui');
+  const newUser = await Users.create({ name, email, password, role });
+  console.log(newUser);
+  return newUser;
+};
+
+module.exports = { FindUser, CreateUser };
