@@ -3,34 +3,29 @@ import { useNavigate } from 'react-router-dom';
 import { apiRegister } from '../services/api';
 
 function Register() {
+  const STATUS_CREATED = 201;
   const MIN_LENGTH_PASSWORD = 6;
   const MAX_LENGTH_NAME = 12;
   const regex = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
-  const history = useNavigate();
+  const navigate = useNavigate();
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(false);
 
-  function registerClick(event) {
-    prop.enviaEmail(email);
-    event.preventDefault();
-    history.push('/home');
-  }
-
   async function handleSubmit(event) {
     event.preventDefault();
     const userRegister = await apiRegister(name, email, password);
-    if (userRegister) {
+    if (userRegister === STATUS_CREATED) {
       setError(false);
-      history('/customer/products');
+      navigate('/customer/products');
     }
     setError(true);
   }
 
   return (
-    <form id="container" onSubmit={ registerClick }>
+    <form id="container">
       <div className="inputs">
         <input
           data-testid="common_register__input-name"

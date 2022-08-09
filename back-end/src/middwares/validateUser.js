@@ -4,13 +4,19 @@ const UserService = require('../service/UserService');
 const dataValidate = async (req, res, next) => {
   const { email, password } = req.body;
 
-  const foundUser = await UserService.FindUser(email, password);
+  const foundUser = await UserService.FindUser(email);
   const comp = md5(password);
     if (!foundUser || comp !== foundUser.password) {
       return res.status(404).json('Not found');
     }
-    console.log(comp);
     next();
   };
 
-module.exports = { dataValidate };
+  const createValidation = async (req, res, next) => {
+    const { email } = req.body;
+    const foundUser = await UserService.FindUser(email);
+    if (foundUser) res.status(409).end();
+    next();
+  };
+
+module.exports = { dataValidate, createValidation };
