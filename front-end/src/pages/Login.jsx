@@ -4,7 +4,7 @@ import apiLogin from '../services/api';
 
 function Login() {
   const MIN_LENGTH_PASSWORD = 6;
-  const regex = /^[a-z0-9.]+@[a-z0-9]+\.[a-z]+(\.[a-z]+)?$/i;
+  const regex = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
   const history = useNavigate();
 
   const [email, setEmail] = useState('');
@@ -17,8 +17,8 @@ function Login() {
     history.push('/home');
   }
 
-  function cadastroClick() {
-    history.push('/cadastro');
+  function registerClick() {
+    history.push('/register');
   }
 
   async function handleSubmit(event) {
@@ -62,7 +62,7 @@ function Login() {
         <button
           data-testid="common_login__button-register"
           type="button"
-          onClick={ cadastroClick }
+          onClick={ registerClick }
         >
           Ainda não tenho conta
         </button>
