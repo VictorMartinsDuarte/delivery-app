@@ -4,6 +4,7 @@ import apiRegister from '../services/api';
 
 function Register() {
   const MIN_LENGTH_PASSWORD = 6;
+  const MAX_LENGTH_NAME = 12;
   const regex = /^[^@\s]+@[^@\s]+\.[^@\s]+$/;
   const history = useNavigate();
 
@@ -39,14 +40,14 @@ function Register() {
         />
 
         <input
-          data-testid="common_Register__input-email"
+          data-testid="common_register__input-email"
           type="email"
           value={ email }
           onChange={ (event) => setEmail(event.target.value) }
         />
 
         <input
-          data-testid="common_Register__input-password"
+          data-testid="common_register__input-password"
           type="password"
           value={ password }
           onChange={ (event) => setPassword(event.target.value) }
@@ -55,9 +56,11 @@ function Register() {
       </div>
       <div className="btn">
         <button
-          data-testid="common_Register__button-Register"
+          data-testid="common_register__button-register"
           type="submit"
-          disabled={ password.length < MIN_LENGTH_PASSWORD || !email.match(regex) }
+          disabled={ password.length < MIN_LENGTH_PASSWORD
+             || !email.match(regex)
+              || name.length < MAX_LENGTH_NAME }
           onClick={ handleSubmit }
         >
           CADASTRAR
@@ -65,7 +68,7 @@ function Register() {
       </div>
       {error && (
         <div className="error-message">
-          <p data-testid="common_Register__element-invalid-email">
+          <p data-testid="common_register__element-invalid_register">
             Não foi possível fazer Register.
           </p>
         </div>
