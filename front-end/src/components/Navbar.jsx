@@ -1,6 +1,16 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+import { getStorage, clearStorage } from '../services/storage';
 
 function Navbar() {
+  const navigate = useNavigate();
+  const userName = getStorage().name;
+
+  function handleLogout() {
+    clearStorage();
+    navigate('/login');
+  }
+
   return (
     <section>
       <button
@@ -19,11 +29,12 @@ function Navbar() {
         data-testid="customer_products__element-navbar-user-full-name"
         type="button"
       >
-        Nome da Pessoa
+        { userName }
       </button>
       <button
         data-testid="customer_products__element-navbar-link-logout"
         type="button"
+        onClick={ handleLogout }
       >
         Logout
       </button>
