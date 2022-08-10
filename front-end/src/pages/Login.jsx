@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { apiLogin } from '../services/api';
+import { saveStorage } from '../services/storage';
 
 function Login() {
   const MIN_LENGTH_PASSWORD = 6;
@@ -26,6 +27,7 @@ function Login() {
     const userLogin = await apiLogin(email, password);
     if (userLogin) {
       setError(false);
+      saveStorage(userLogin);
       navigate('/customer/products');
     }
     setError(true);
