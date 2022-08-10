@@ -1,5 +1,4 @@
 const md5 = require('md5');
-const { generateJWT } = require('../auth/jwt');
 const UserService = require('../service/UserService');
 
 const FindUser = async (req, res, next) => {
@@ -31,6 +30,6 @@ const Login = async (req, res, next) => {
   } catch (error) {
     next(error);
   }
-}
+};
 
 module.exports = { FindUser, CreateUser, Login };

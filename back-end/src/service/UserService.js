@@ -1,5 +1,5 @@
-const { Users } = require('../database/models');
 const md5 = require('md5');
+const { Users } = require('../database/models');
 const { generateJWT } = require('../auth/jwt');
 
 const FindUser = async (email) => {
