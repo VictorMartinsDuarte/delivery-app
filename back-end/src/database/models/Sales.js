@@ -1,5 +1,5 @@
 const Sales = (sequelize, DataTypes) => {
-	const Sales = sequelize.define('sales', {
+	const Sales = sequelize.define('Sales', {
             id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
@@ -13,13 +13,14 @@ const Sales = (sequelize, DataTypes) => {
     saleDate: DataTypes.DATE,
     status: DataTypes.STRING,
 	}, 
-    { timestamps: false},
+  { timestamps: false,
+    underscored: true
+  },
     );
 
-  //   Sales.associate = (models) => {
-  //     Sales.belongsTo(models.Users, { as: 'users', foreignKey: 'userId' });
-  //     Sales.belongsTo(models.Users, { as: 'users', foreignKey: 'sellerId' });
-	// };
+    Sales.associate = (models) => {
+      Sales.belongsTo(models.Users, { as: 'users', foreignKey: 'userId', foreignKey: 'sellerId' });
+	};
 
 	return Sales;
 };
