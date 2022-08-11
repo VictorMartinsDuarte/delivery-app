@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import Card from '../components/Card';
 import { apiProducts } from '../services/api';
+import CartBtn from '../components/CartBtn';
 
 function CustomerProducts() {
   const [products, setProducts] = useState([]);
@@ -27,6 +28,7 @@ function CustomerProducts() {
           price={ price }
         />
       ))}
+      <CartBtn />
     </div>
   );
 }
