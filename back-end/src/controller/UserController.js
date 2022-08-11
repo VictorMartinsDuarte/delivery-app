@@ -10,6 +10,7 @@ const FindUser = async (req, res, next) => {
     next(error);
   }
 };
+
 const CreateUser = async (req, res, next) => {
   try {
     const { name, email, password } = req.body;
@@ -21,4 +22,14 @@ const CreateUser = async (req, res, next) => {
   }
 };
 
-module.exports = { FindUser, CreateUser };
+const Login = async (req, res, next) => {
+  try {
+    const { email, password } = req.body;
+    const user = await UserService.Login({ email, password });
+    return res.status(200).json(user);
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports = { FindUser, CreateUser, Login };
