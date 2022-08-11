@@ -3,11 +3,11 @@ import React, { useState } from 'react';
 function Card(products) {
   const [counter, setCounter] = useState(0);
   const { id, name, price, img } = products;
-  console.log(img);
+  const prices = price.replace('.', ',');
 
   return (
     <div>
-      <h3 data-testid={ `customer_products__element-card-price-${id}` }>{ price }</h3>
+      <h3 data-testid={ `customer_products__element-card-price-${id}` }>{ prices }</h3>
       <img
         data-testid={ `customer_products__img-card-bg-image-${id}` }
         src={ img }

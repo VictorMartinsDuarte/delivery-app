@@ -15,7 +15,6 @@ function CustomerProducts() {
     customerProducts();
   }, []);
 
-  console.log(products);
   return (
     <div>
       <Navbar />
