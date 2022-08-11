@@ -1,5 +1,5 @@
 const Products = (sequelize, DataTypes) => {
-	const Products = sequelize.define('products', {
+	const Products = sequelize.define('Products', {
             id: {
             type: DataTypes.INTEGER,
             primaryKey: true,
@@ -9,12 +9,10 @@ const Products = (sequelize, DataTypes) => {
     price: DataTypes.DECIMAL(4,2),
 	  urlImage: DataTypes.STRING,
 	}, 
-    { timestamps: false},
+    { timestamps: false,
+      underscored: true
+    },
     );
-
-  //   Products.associate = (models) => {
-  //       Products.belongsTo(models.SalesProducts, { as: 'salesProducts', foreignKey: 'productId' });
-	// };
 
 	return Products;
 };
