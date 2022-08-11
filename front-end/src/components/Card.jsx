@@ -17,7 +17,7 @@ function Card() {
           <button
             data-testid="customer_products__button-card-rm-item-<id>"
             type="button"
-            disabled={ counter < 2 }
+            disabled={ counter < 1 }
             onClick={ () => setCounter(counter - 1) }
           >
             -
