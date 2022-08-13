@@ -1,8 +1,16 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { useCart } from '../contexts/useCart';
 
 function CartBtn() {
   const navigate = useNavigate();
+
+  const { cart } = useCart();
+
+  const cartTotal = useMemo(() => cart.reduce(
+    (acc, curr) => acc + Number(curr.price) * curr.quantity,
+    0,
+  ), [cart]);
 
   function handleNav() {
     navigate('/customer/checkout');
@@ -15,7 +23,7 @@ function CartBtn() {
         type="button"
         onClick={ handleNav }
       >
-        Ver Carrinho
+        { cartTotal.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' }) }
       </button>
     </div>
   );

@@ -1,20 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import Navbar from '../components/Navbar';
 import Card from '../components/Card';
 import { apiProducts } from '../services/api';
 import CartBtn from '../components/CartBtn';
+import { useCart } from '../contexts/useCart';
 
 function CustomerProducts() {
-  const [products, setProducts] = useState([]);
+  const { products, setProducts } = useCart();
 
-  async function customerProducts() {
+  const customerProducts = useCallback(async () => {
     const customProducts = await apiProducts();
+    console.log(customProducts);
     setProducts(customProducts);
-  }
+  }, [setProducts]);
 
   useEffect(() => {
     customerProducts();
-  }, []);
+  }, [customerProducts]);
 
   return (
     <div>
