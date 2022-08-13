@@ -12,19 +12,25 @@ function CartBtn() {
     0,
   ), [cart]);
 
-  function handleNav() {
+  const handleNav = () => {
     navigate('/customer/checkout');
-  }
+  };
 
   return (
     <div>
       <button
-        data-testid="customer_products__checkout-bottom-value"
+        data-testid="customer_products__button-cart"
         type="button"
         onClick={ handleNav }
+        disabled={ cartTotal <= 0 }
+      >
+        Ver Carrinho
+      </button>
+      <p
+        data-testid="customer_products__checkout-bottom-value"
       >
         { cartTotal.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' }) }
-      </button>
+      </p>
     </div>
   );
 }
