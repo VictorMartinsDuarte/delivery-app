@@ -21,4 +21,13 @@ const apiRegister = async (name, email, password) => {
   }
 };
 
-export { apiLogin, apiRegister };
+const apiProducts = async () => {
+  try {
+    const response = await api.get('/customer/products');
+    return response.data;
+  } catch (err) {
+    return false;
+  }
+};
+
+export { apiLogin, apiRegister, apiProducts };
