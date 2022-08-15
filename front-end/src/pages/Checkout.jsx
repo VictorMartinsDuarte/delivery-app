@@ -4,15 +4,22 @@ import Navbar from '../components/Navbar';
 import { useCart } from '../contexts/useCart';
 
 function Checkout() {
-  const { cart } = useCart();
+  const { cart, setCart } = useCart();
+
   const handleRemove = (id) => {
     const remove = cart.filter((e) => e.id !== id);
-    console.log(remove);
+    setCart(remove);
   };
+
   const cartTotal = useMemo(() => cart.reduce(
     (acc, curr) => acc + Number(curr.price) * curr.quantity,
     0,
   ), [cart]);
+
+  // useEffect(() => {
+  //   handleRemove()
+  // },[cart])
+
   return (
     <div>
       <Navbar />

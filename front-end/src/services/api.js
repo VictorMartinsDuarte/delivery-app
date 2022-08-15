@@ -30,4 +30,23 @@ const apiProducts = async () => {
   }
 };
 
-export { apiLogin, apiRegister, apiProducts };
+const apiGetUsers = async () => {
+  try {
+    const response = await api.get('/login');
+    return response.data;
+  } catch (err) {
+    return false;
+  }
+};
+
+const apiPostSellers = async () => {
+  try {
+    const response = await api.post('/customer/checkout');
+    console.log(response);
+    return response.data;
+  } catch (err) {
+    return false;
+  }
+};
+
+export { apiLogin, apiRegister, apiProducts, apiGetUsers, apiPostSellers };

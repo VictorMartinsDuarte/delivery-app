@@ -18,6 +18,7 @@ function App() {
         <Route exact path="/customer/products" element={ <CustomerProducts /> } />
         <Route exact path="/seller/orders" element={ <SellerOrders /> } />
         <Route exact path="/customer/checkout" element={ <Checkout /> } />
+        <Route exact path="/customer/orders/:id" />
       </Routes>
     </CartProvider>
   );
