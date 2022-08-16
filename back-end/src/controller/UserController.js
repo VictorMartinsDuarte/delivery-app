@@ -1,11 +1,10 @@
 const md5 = require('md5');
 const UserService = require('../service/UserService');
 
-const FindUser = async (req, res, next) => {
+const FindAllUser = async (_req, res, next) => {
   try {
-    const { email } = req.body;
-    const foundUser = await UserService.FindUser(email);
-    return res.status(200).json(foundUser);
+    const allUsers = await UserService.FindAllUser();
+    return res.status(200).json(allUsers);
   } catch (error) {
     next(error);
   }
@@ -32,4 +31,4 @@ const Login = async (req, res, next) => {
   }
 };
 
-module.exports = { FindUser, CreateUser, Login };
+module.exports = { FindAllUser, CreateUser, Login };

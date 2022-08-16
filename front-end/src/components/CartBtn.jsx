@@ -6,7 +6,6 @@ function CartBtn() {
   const navigate = useNavigate();
 
   const { cart } = useCart();
-
   const cartTotal = useMemo(() => cart.reduce(
     (acc, curr) => acc + Number(curr.price) * curr.quantity,
     0,
