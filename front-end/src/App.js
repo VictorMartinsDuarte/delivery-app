@@ -6,6 +6,7 @@ import Register from './pages/Register';
 import CustomerProducts from './pages/CustomerProducts';
 import SellerOrders from './pages/SellerOrders';
 import { CartProvider } from './contexts/useCart';
+import AdminManage from './pages/AdminManage';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Route exact path="/customer/products" element={ <CustomerProducts /> } />
         <Route exact path="/seller/orders" element={ <SellerOrders /> } />
         <Route exact path="/customer/checkout" />
+        <Route exact path="/admin/manage" element={ <AdminManage /> } />
       </Routes>
     </CartProvider>
   );
