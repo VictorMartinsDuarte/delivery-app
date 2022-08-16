@@ -10,5 +10,4 @@ const createSale = async (req, res, _next) => {
     return res.status(201).json(newSale);
 };
 
-
 module.exports = { getAllProducts, createSale };

@@ -16,7 +16,9 @@ function DeliveryDetails() {
   }, []);
 
   const handleclick = async () => {
-    const idSeller = await apiPostSellers();
+    const user = window.localStorage.getItem('user');
+    const objUser = JSON.parse(user);
+    const idSeller = await apiPostSellers(objUser.token);
     navigate(`/customer/orders/${idSeller}`);
   };
 

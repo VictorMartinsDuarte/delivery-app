@@ -39,14 +39,12 @@ const apiGetUsers = async () => {
   }
 };
 
-const apiPostSellers = async () => {
-  try {
-    const response = await api.post('/customer/checkout');
-    console.log(response);
-    return response.data;
-  } catch (err) {
-    return false;
-  }
+const apiPostSellers = async (token) => {
+  const response = await api.post('/customer/checkout', {}, {
+    headers: {
+      Authorization: `${token}`,
+    } });
+  return response.data;
 };
 
 export { apiLogin, apiRegister, apiProducts, apiGetUsers, apiPostSellers };
