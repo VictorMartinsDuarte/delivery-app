@@ -6,7 +6,8 @@ import Register from './pages/Register';
 import CustomerProducts from './pages/CustomerProducts';
 import SellerOrders from './pages/SellerOrders';
 import { CartProvider } from './contexts/useCart';
-import Checkout from './pages/Checkout';
+import CheckoutPage from './pages/Checkout';
+// import CheckoutDetails from './pages/CheckoutDetails';
 
 function App() {
   return (
@@ -17,7 +18,7 @@ function App() {
         <Route exact path="/register" element={ <Register /> } />
         <Route exact path="/customer/products" element={ <CustomerProducts /> } />
         <Route exact path="/seller/orders" element={ <SellerOrders /> } />
-        <Route exact path="/customer/checkout" element={ <Checkout /> } />
+        <Route exact path="/customer/checkout" element={ <CheckoutPage /> } />
         <Route exact path="/customer/orders/:id" />
       </Routes>
     </CartProvider>

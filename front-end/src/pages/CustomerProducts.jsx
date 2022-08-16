@@ -10,7 +10,6 @@ function CustomerProducts() {
 
   const customerProducts = useCallback(async () => {
     const customProducts = await apiProducts();
-    console.log(customProducts);
     setProducts(customProducts);
   }, [setProducts]);
 
