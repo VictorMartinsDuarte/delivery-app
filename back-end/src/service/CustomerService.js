@@ -6,15 +6,15 @@ const getAllProducts = async () => {
 };
 
 const createSale = async ({ userId, sellerId,
-  totalPrice, deliveryAddress, deliveryNumber, saleDate, status }) => {
+  totalPrice, deliveryAddress, deliveryNumber }) => {
+    // const user = await FindUser(userId);
   const createNewSale = await Sales.create({
     userId, 
     sellerId,
     totalPrice,
     deliveryAddress,
     deliveryNumber,
-    saleDate,
-    status,
+    saleDate: new Date(),
   });
     return createNewSale.id;
 };

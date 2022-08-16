@@ -51,39 +51,45 @@ const findGetusersSeller = async (Nome) => {
   return sellers;
 };
 
-const apiPostSellers = async (objBody, token) => {
+const apiPostSellers = async (objBody, token, arrayProducts) => {
   const response = await api.post(
     '/customer/checkout',
     {
       userId: objBody.userId,
       sellerId: objBody.sellerId,
-      totalPrice: objBody.priceTotal,
-      deliveryAddress: objBody.adresss,
-      deliveryNumber: objBody.deliveryNum,
+      totalPrice: objBody.totalPrice,
+      deliveryAddress: objBody.deliveryAddress,
+      deliveryNumber: objBody.deliveryNumber,
     },
     {
       headers: {
         Authorization: `${token}`,
       } },
   );
-  return response.data;
-};
-
-const apiPostSalesProducts = async (idseller, arrayProducts) => {
   arrayProducts.forEach(async (element) => {
     await api.post('/salesproducts', {
-      saleId: idseller,
+      saleId: response.data,
       productId: element.id,
       quantity: element.quantity,
     });
   });
+  return response.data;
 };
+
+// const apiPostSalesProducts = async (idseller, arrayProducts) => {
+//   arrayProducts.forEach(async (element) => {
+//     await api.post('/salesproducts', {
+//       saleId: idseller,
+//       productId: element.id,
+//       quantity: element.quantity,
+//     });
+//   });
+// };
 
 export { apiLogin,
   apiRegister,
   apiProducts,
   apiGetUsers,
   apiPostSellers,
-  apiPostSalesProducts,
   findGetusersCostumer,
   findGetusersSeller };

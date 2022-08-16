@@ -5,9 +5,7 @@ import { apiGetUsers,
   apiPostSellers, findGetusersCostumer,
   findGetusersSeller } from '../services/api';
 
-let deliverynumber = 0;
 function DeliveryDetails() {
-  const NumberSlice = -4;
   const {
     cart,
     adressNumber,
@@ -55,17 +53,15 @@ function DeliveryDetails() {
   const handleclick = async () => {
     const user = window.localStorage.getItem('user');
     const objUser = JSON.parse(user);
-    deliverynumber += 1;
     const objBody = {
       userId: usersCostumer,
       sellerId: usersSellerId,
       totalPrice: cartTotal,
-      deliveryAddress: `${adress} ${adressNumber}`,
-      deliveryNumber: (`0000${deliverynumber}`).slice(NumberSlice),
+      deliveryAddress: adress,
+      deliveryNumber: adressNumber,
     };
-    const idSeller = await apiPostSellers(objBody, objUser.token);
+    const idSeller = await apiPostSellers(objBody, objUser.token, cart);
     navigate(`/customer/orders/${idSeller}`);
-    // await apiPostSalesProducts(idSeller, cart);
   };
 
   return (
