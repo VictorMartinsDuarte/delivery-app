@@ -30,4 +30,21 @@ const apiProducts = async () => {
   }
 };
 
-export { apiLogin, apiRegister, apiProducts };
+const apiRegisterAdmin = async (object, token) => {
+  try {
+    const response = await api.post('/admin', {
+      name: object.name,
+      email: object.email,
+      password: object.password,
+      role: object.role }, {
+      headers: {
+        Authorization: `${token}`,
+      },
+    });
+    return response.status;
+  } catch (err) {
+    return false;
+  }
+};
+
+export { apiLogin, apiRegister, apiProducts, apiRegisterAdmin };
