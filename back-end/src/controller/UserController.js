@@ -31,4 +31,17 @@ const Login = async (req, res, next) => {
   }
 };
 
-module.exports = { FindAllUser, CreateUser, Login };
+const CreateByAdmin = async (req, res, next) => {
+  try {
+    const { name, email, password, role } = req.body;
+    const { role: adminRole } = req.user;
+    const pwHash = md5(password);
+    if (adminRole !== 'administrator') return res.status(403).json({ message: 'Não autorizado.' });
+    const user = await UserService.CreateUser(name, email, pwHash, role);
+    return res.status(201).json(user);
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports = { FindAllUser, CreateUser, Login, CreateByAdmin };

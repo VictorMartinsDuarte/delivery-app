@@ -30,6 +30,9 @@ function Login() {
       saveStorage(userLogin);
       navigate('/customer/products');
     }
+    if (userLogin.role === 'administrator') {
+      navigate('/admin/manage');
+    }
     setError(true);
   }
 
