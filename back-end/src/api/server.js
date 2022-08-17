@@ -13,5 +13,5 @@ app.use('/login', Login);
 app.use('/register', Register);
 app.use('/seller', Sales);
 app.use('/customer', Products);
-app.use('/admin', Admin)
+app.use('/admin', Admin);
 console.log(`Api rodando na porta ${port}`);
