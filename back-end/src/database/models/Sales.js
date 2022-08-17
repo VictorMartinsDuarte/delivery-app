@@ -11,7 +11,10 @@ const Sales = (sequelize, DataTypes) => {
     deliveryAddress: DataTypes.STRING,
     deliveryNumber: DataTypes.STRING,
     saleDate: DataTypes.DATE,
-    status: DataTypes.STRING,
+    status: {
+      type: DataTypes.STRING,
+      defaultValue: "Pendente",
+    }
 	}, 
   { timestamps: false,
     underscored: true

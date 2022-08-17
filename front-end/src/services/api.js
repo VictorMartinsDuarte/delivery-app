@@ -30,21 +30,66 @@ const apiProducts = async () => {
   }
 };
 
-const apiRegisterAdmin = async (object, token) => {
+const apiGetUsers = async () => {
   try {
-    const response = await api.post('/admin', {
-      name: object.name,
-      email: object.email,
-      password: object.password,
-      role: object.role }, {
-      headers: {
-        Authorization: `${token}`,
-      },
-    });
-    return response.status;
+    const response = await api.get('/login');
+    return response.data;
   } catch (err) {
     return false;
   }
 };
 
-export { apiLogin, apiRegister, apiProducts, apiRegisterAdmin };
+const findGetusersCostumer = async (Email) => {
+  const users = await apiGetUsers();
+  const sellers = users.filter(({ email }) => email === Email);
+  return sellers;
+};
+
+const findGetusersSeller = async (Nome) => {
+  const users = await apiGetUsers();
+  const sellers = users.filter(({ name }) => name === Nome);
+  return sellers;
+};
+
+const apiPostSellers = async (objBody, token, arrayProducts) => {
+  const response = await api.post(
+    '/customer/checkout',
+    {
+      userId: objBody.userId,
+      sellerId: objBody.sellerId,
+      totalPrice: objBody.totalPrice,
+      deliveryAddress: objBody.deliveryAddress,
+      deliveryNumber: objBody.deliveryNumber,
+    },
+    {
+      headers: {
+        Authorization: `${token}`,
+      } },
+  );
+  arrayProducts.forEach(async (element) => {
+    await api.post('/salesproducts', {
+      saleId: response.data,
+      productId: element.id,
+      quantity: element.quantity,
+    });
+  });
+  return response.data;
+};
+
+// const apiPostSalesProducts = async (idseller, arrayProducts) => {
+//   arrayProducts.forEach(async (element) => {
+//     await api.post('/salesproducts', {
+//       saleId: idseller,
+//       productId: element.id,
+//       quantity: element.quantity,
+//     });
+//   });
+// };
+
+export { apiLogin,
+  apiRegister,
+  apiProducts,
+  apiGetUsers,
+  apiPostSellers,
+  findGetusersCostumer,
+  findGetusersSeller };

@@ -6,6 +6,8 @@ import Register from './pages/Register';
 import CustomerProducts from './pages/CustomerProducts';
 import SellerOrders from './pages/SellerOrders';
 import { CartProvider } from './contexts/useCart';
+import CheckoutPage from './pages/Checkout';
+// import CheckoutDetails from './pages/CheckoutDetails';
 import AdminManage from './pages/AdminManage';
 
 function App() {
@@ -17,7 +19,8 @@ function App() {
         <Route exact path="/register" element={ <Register /> } />
         <Route exact path="/customer/products" element={ <CustomerProducts /> } />
         <Route exact path="/seller/orders" element={ <SellerOrders /> } />
-        <Route exact path="/customer/checkout" />
+        <Route exact path="/customer/checkout" element={ <CheckoutPage /> } />
+        <Route exact path="/customer/orders/:id" />
         <Route exact path="/admin/manage" element={ <AdminManage /> } />
       </Routes>
     </CartProvider>

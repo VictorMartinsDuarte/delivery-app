@@ -7,8 +7,17 @@ const FindUser = async (email) => {
   return foundUser;
 };
 
+const FindUserByName = async (name) => {
+  const foundUser = await Users.findOne({ where: { name } });
+  return foundUser;
+};
+
+const FindAllUser = async () => {
+  const allUser = await Users.findAll();
+  return allUser;
+};
+
 const CreateUser = async (name, email, password, role) => {
-  console.log('chegou aqui');
   const newUser = await Users.create({ name, email, password, role });
   console.log(newUser);
   return newUser;
@@ -22,4 +31,4 @@ const Login = async ({ email, password }) => {
   return { name, email: user.email, role, token };
 };
 
-module.exports = { FindUser, CreateUser, Login };
+module.exports = { FindUser, CreateUser, Login, FindAllUser, FindUserByName };
