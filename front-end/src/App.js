@@ -15,12 +15,12 @@ function App() {
   return (
     <CartProvider>
       <Routes>
-        <Route exact path="/customer/orders/:id" element={ <CheckoutDetails /> } />
         <Route exact path="/register" element={ <Register /> } />
         <Route exact path="/customer/products" element={ <CustomerProducts /> } />
         <Route exact path="/seller/orders" element={ <SellerOrders /> } />
-        <Route exact path="/customer/checkout" element={ <CheckoutPage /> } />
+        <Route exact path="/customer/orders/:id" element={ <CheckoutDetails /> } />
         <Route exact path="/customer/orders/" element={ <Orders /> } />
+        <Route exact path="/customer/checkout" element={ <CheckoutPage /> } />
         <Route exact path="/admin/manage" element={ <AdminManage /> } />
         <Route exact path="/login" element={ <Login /> } />
         <Route exact path="/" element={ <Navigate replace to="/login" /> } />
