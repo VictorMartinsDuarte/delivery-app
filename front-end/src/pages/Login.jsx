@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { apiLogin } from '../services/api';
 import { saveStorage } from '../services/storage';
@@ -21,6 +21,17 @@ function Login() {
   function registerClick() {
     navigate('/register');
   }
+
+  const getUserId = async () => {
+    const userId = window.localStorage.getItem('user');
+    if (userId) {
+      navigate('/customer/products');
+    }
+  };
+
+  useEffect(() => {
+    getUserId();
+  }, []);
 
   async function handleSubmit(event) {
     event.preventDefault();
