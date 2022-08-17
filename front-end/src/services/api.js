@@ -76,6 +76,23 @@ const apiPostSellers = async (objBody, token, arrayProducts) => {
   return response.data;
 };
 
+const apiRegisterAdmin = async (object, token) => {
+  try {
+    const response = await api.post('/admin', {
+      name: object.name,
+      email: object.email,
+      password: object.password,
+      role: object.role }, {
+      headers: {
+        Authorization: `${token}`,
+      },
+    });
+    return response.status;
+  } catch (err) {
+    return false;
+  }
+};
+
 // const apiPostSalesProducts = async (idseller, arrayProducts) => {
 //   arrayProducts.forEach(async (element) => {
 //     await api.post('/salesproducts', {
@@ -92,4 +109,5 @@ export { apiLogin,
   apiGetUsers,
   apiPostSellers,
   findGetusersCostumer,
-  findGetusersSeller };
+  findGetusersSeller,
+  apiRegisterAdmin };
