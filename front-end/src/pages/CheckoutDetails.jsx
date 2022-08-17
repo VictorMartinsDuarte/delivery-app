@@ -1,20 +1,22 @@
-import React, { useMemo } from 'react';
-import { useCart } from '../contexts/useCart';
+import React
+//  { useMemo }
+  from 'react';
+// import { useCart } from '../contexts/useCart';
 import Navbar from '../components/Navbar';
 
 function CheckoutDetails() {
-  const { cart } = useCart();
+  // const { cart } = useCart();
 
-  const cartTotal = useMemo(() => cart.reduce(
-    (acc, curr) => acc + Number(curr.price) * curr.quantity,
-    0,
-  ), [cart]);
+  // const cartTotal = useMemo(() => cart.reduce(
+  //   (acc, curr) => acc + Number(curr.price) * curr.quantity,
+  //   0,
+  // ), [cart]);
 
   return (
     <div>
       <Navbar />
       <p>Detalhe do Pedido</p>
-      <div>
+      {/* <div>
         {cart.map((item, index) => (
           <div key={ index }>
             <span
@@ -63,7 +65,7 @@ function CheckoutDetails() {
         >
           {cartTotal.toLocaleString('pt-br', { style: 'currency', currency: 'BRL' })}
         </span>
-      </div>
+      </div> */}
     </div>
   );
 }

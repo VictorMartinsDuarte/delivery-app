@@ -28,6 +28,7 @@ function DeliveryDetails() {
     const userId = window.localStorage.getItem('user');
     const objUser = JSON.parse(userId);
     const [user] = await findGetusersCostumer(objUser.email);
+    window.localStorage.setItem('userId', JSON.stringify(user.id));
     setUsersCostumer(user.id);
   };
 
