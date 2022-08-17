@@ -14,12 +14,14 @@ function Navbar() {
   return (
     <section>
       <button
+        onClick={ () => navigate('/customer/products') }
         data-testid="customer_products__element-navbar-link-products"
         type="button"
       >
         Produtos
       </button>
       <button
+        onClick={ () => navigate('/customer/orders') }
         data-testid="customer_products__element-navbar-link-orders"
         type="button"
       >

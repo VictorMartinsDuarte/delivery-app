@@ -93,15 +93,10 @@ const apiRegisterAdmin = async (object, token) => {
   }
 };
 
-// const apiPostSalesProducts = async (idseller, arrayProducts) => {
-//   arrayProducts.forEach(async (element) => {
-//     await api.post('/salesproducts', {
-//       saleId: idseller,
-//       productId: element.id,
-//       quantity: element.quantity,
-//     });
-//   });
-// };
+const apiGetOrders = async (idUser) => {
+  const response = await api.get(`/orders/${idUser}`);
+  return response.data;
+};
 
 export { apiLogin,
   apiRegister,
@@ -110,4 +105,5 @@ export { apiLogin,
   apiPostSellers,
   findGetusersCostumer,
   findGetusersSeller,
-  apiRegisterAdmin };
+  apiRegisterAdmin,
+  apiGetOrders };
