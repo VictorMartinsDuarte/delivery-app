@@ -3,7 +3,8 @@ import React from 'react';
 function CardOrders(params) {
   const { id, price, date, status } = params;
   const MAX_INDEX_DATE = 10;
-  const formattedDate = date.slice(0, MAX_INDEX_DATE).split('-').reverse().join('/');
+  const formattedDate = date !== undefined ? date.slice(0, MAX_INDEX_DATE)
+    .split('-').reverse().join('/') : null;
 
   return (
     <div>
@@ -27,7 +28,7 @@ function CardOrders(params) {
       <h4
         data-testid={ `customer_orders__element-card-price-${id}` }
       >
-        {price.replace('.', ',')}
+        {price !== undefined ? price.replace('.', ',') : null}
 
       </h4>
     </div>
