@@ -44,6 +44,9 @@ function Login() {
     if (userLogin.role === 'administrator') {
       navigate('/admin/manage');
     }
+    if (userLogin.role === 'seller') {
+      navigate('/seller/orders');
+    }
     setError(true);
   }
 
