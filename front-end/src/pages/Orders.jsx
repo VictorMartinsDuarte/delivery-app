@@ -17,7 +17,6 @@ function Orders() {
   useEffect(() => {
     customerOrders();
   }, []);
-  console.log(order);
 
   return (
     <div>
