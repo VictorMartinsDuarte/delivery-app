@@ -93,6 +93,22 @@ const apiRegisterAdmin = async (object, token) => {
   }
 };
 
+const apiDeleteAdmin = async (idUser, token) => {
+  try {
+    const response = await api.delete(
+      '/admin',
+      { data: { id: idUser },
+        headers: {
+          Authorization: `${token}`,
+        },
+      },
+    );
+    return response.status;
+  } catch (err) {
+    return false;
+  }
+};
+
 const apiGetOrders = async (idUser) => {
   const response = await api.get(`/orders/${idUser}`);
   return response.data;
@@ -123,4 +139,5 @@ export { apiLogin,
   apiGetOrders,
   apiGetSellers,
   apiupdateSeler,
-  apiGetOrdersSeller };
+  apiGetOrdersSeller,
+  apiDeleteAdmin };

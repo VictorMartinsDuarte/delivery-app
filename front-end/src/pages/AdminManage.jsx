@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Navbar from '../components/Navbar';
+import TableUsers from '../components/TableUsers';
 import { apiRegisterAdmin } from '../services/api';
 
 function AdminManage() {
@@ -10,6 +11,7 @@ function AdminManage() {
 
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
+  const [tokenAdmin, settoken] = useState('');
   const [password, setPassword] = useState('');
   const [role, setRole] = useState('seller');
   const [error, setError] = useState(false);
@@ -32,6 +34,12 @@ function AdminManage() {
     }
     setError(true);
   };
+
+  useEffect(() => {
+    const user = JSON.parse(window.localStorage.getItem('user'));
+    const { token } = user;
+    settoken(token);
+  }, []);
 
   return (
     <div>
@@ -75,6 +83,7 @@ function AdminManage() {
           </span>
         )}
       </div>
+      <TableUsers token={ tokenAdmin } />
     </div>
   );
 }
