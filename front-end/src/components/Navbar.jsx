@@ -11,6 +11,17 @@ function Navbar() {
     navigate('/login');
   }
 
+  function handleOrders() {
+    const sellerId = window.localStorage.getItem('sellerId');
+    const objUser = JSON.parse(sellerId);
+    if (objUser) {
+      navigate('/seller/orders');
+    }
+    if (!objUser) {
+      navigate('/customer/orders');
+    }
+  }
+
   return (
     <section>
       <button
@@ -21,7 +32,7 @@ function Navbar() {
         Produtos
       </button>
       <button
-        onClick={ () => navigate('/customer/orders') }
+        onClick={ handleOrders }
         data-testid="customer_products__element-navbar-link-orders"
         type="button"
       >

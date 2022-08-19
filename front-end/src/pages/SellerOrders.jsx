@@ -1,16 +1,14 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
 import CardSellerOrders from '../components/CardSellerOrders';
 import Navbar from '../components/Navbar';
-import { apiGetOrders } from '../services/api';
+import { apiGetOrdersSeller } from '../services/api';
 
 function SellerOrders() {
-  const navigate = useNavigate();
   const [order, setOrder] = useState([]);
   const sellerOrders = useCallback(async () => {
-    const userId = window.localStorage.getItem('userId');
+    const userId = window.localStorage.getItem('sellerId');
     const objUser = JSON.parse(userId);
-    const customOrders = await apiGetOrders(objUser);
+    const customOrders = await apiGetOrdersSeller(objUser);
     setOrder(customOrders);
   }, []);
 
@@ -26,23 +24,18 @@ function SellerOrders() {
           { id, totalPrice, saleDate, status, deliveryAddress, deliveryNumber },
           index,
         ) => (
-          <button
-            key={ index }
-            type="button"
-            onClick={ () => navigate(`/seller/orders/${id}`) }
-          >
-            <div key={ index }>
-              <CardSellerOrders
-                key={ id }
-                id={ id }
-                date={ saleDate }
-                price={ totalPrice }
-                status={ status }
-                address={ deliveryAddress }
-                addressNumber={ deliveryNumber }
-              />
-            </div>
-          </button>
+          <div key={ index }>
+            <CardSellerOrders
+              index={ index }
+              key={ id }
+              id={ id }
+              date={ saleDate }
+              price={ totalPrice }
+              status={ status }
+              address={ deliveryAddress }
+              addressNumber={ deliveryNumber }
+            />
+          </div>
         ),
       )}
     </div>

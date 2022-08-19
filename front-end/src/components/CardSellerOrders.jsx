@@ -1,7 +1,9 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function CardSellerOrders(params) {
-  const { id, price, date, status, address, addressNumber } = params;
+  const navigate = useNavigate();
+  const { id, price, date, status, address, addressNumber, index } = params;
   const MAX_INDEX_DATE = 10;
   const formattedDate = date !== undefined ? date.slice(0, MAX_INDEX_DATE)
     .split('-').reverse().join('/') : null;
@@ -13,12 +15,18 @@ function CardSellerOrders(params) {
       >
         {id}
       </h3>
-      <h2
-        data-testid={ `seller_orders__element-delivery-status-${id}` }
+      <button
+        key={ index }
+        type="button"
+        onClick={ () => navigate(`/seller/orders/${id}`) }
       >
-        {status}
+        <h2
+          data-testid={ `seller_orders__element-delivery-status-${id}` }
+        >
+          {status}
 
-      </h2>
+        </h2>
+      </button>
       <h4
         data-testid={ `seller_orders__element-order-date-${id}` }
       >

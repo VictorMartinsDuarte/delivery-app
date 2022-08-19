@@ -97,6 +97,10 @@ const apiGetOrders = async (idUser) => {
   const response = await api.get(`/orders/${idUser}`);
   return response.data;
 };
+const apiGetOrdersSeller = async (idUser) => {
+  const response = await api.get(`/orders/seller/${idUser}`);
+  return response.data;
+};
 
 const apiGetSellers = async (idSeller) => {
   const response = await api.get(`/salesproducts/${idSeller}`);
@@ -118,4 +122,5 @@ export { apiLogin,
   apiRegisterAdmin,
   apiGetOrders,
   apiGetSellers,
-  apiupdateSeler };
+  apiupdateSeler,
+  apiGetOrdersSeller };

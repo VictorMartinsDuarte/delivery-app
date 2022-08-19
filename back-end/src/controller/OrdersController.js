@@ -6,4 +6,10 @@ const getSalesId = async (req, res, _next) => {
     return res.status(200).json(found);
 };
 
-module.exports = { getSalesId };
+const getSalesIdSeller = async (req, res, _next) => {
+    const { id } = req.params;
+    const found = await Orders.getAllSalesSeller(id);
+    return res.status(200).json(found);
+};
+
+module.exports = { getSalesId, getSalesIdSeller };

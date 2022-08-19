@@ -22,7 +22,7 @@ function CardOrdersDetails(params) {
       <h2
         data-testid="customer_order_details__element-order-details-label-delivery-status"
       >
-        {status}
+        { status }
 
       </h2>
       <h4
