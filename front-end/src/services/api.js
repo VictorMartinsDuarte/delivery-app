@@ -103,6 +103,11 @@ const apiGetSellers = async (idSeller) => {
   return response.data;
 };
 
+const apiupdateSeler = async (idSeller, statusSeller) => {
+  const response = await api.put(`/seller/orders/${idSeller}`, { status: statusSeller });
+  return response.data;
+};
+
 export { apiLogin,
   apiRegister,
   apiProducts,
@@ -112,4 +117,5 @@ export { apiLogin,
   findGetusersSeller,
   apiRegisterAdmin,
   apiGetOrders,
-  apiGetSellers };
+  apiGetSellers,
+  apiupdateSeler };

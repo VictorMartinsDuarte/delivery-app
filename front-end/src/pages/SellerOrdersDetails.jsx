@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import { useParams } from 'react-router-dom';
 import Navbar from '../components/Navbar';
-import { apiGetSellers, apiGetUsers } from '../services/api';
+import { apiGetSellers, apiGetUsers, apiupdateSeler } from '../services/api';
 import CheckoutDetails from '../components/CheckoutDetails';
 import SellerCardOrdersDetails from '../components/SellerCardOrdersDetails';
 
@@ -9,7 +9,6 @@ function SellerOrdersDetails() {
   const { id } = useParams();
   const [sellers, setSellers] = useState('');
   const [seller, setSeller] = useState('');
-  const [disebleBottom] = useState(true);
   const SellersOrders = useCallback(async (iD) => {
     const SellerDetails = await apiGetSellers(iD);
     const nameseller = await apiGetUsers();
@@ -27,6 +26,14 @@ function SellerOrdersDetails() {
     SellersOrders(id);
   }, []);
 
+  async function preparingClick() {
+    await apiupdateSeler(id, 'Preparando');
+  }
+
+  async function dispatchClick() {
+    await apiupdateSeler(id, 'Em Trânsito');
+  }
+
   return (
     <div>
       {/* {console.log(sellers)} */}
@@ -43,13 +50,16 @@ function SellerOrdersDetails() {
       <button
         type="button"
         data-testid="seller_order_details__button-preparing-check"
+        onClick={ preparingClick }
+        disabled={ sellers.status !== 'Pendente' }
       >
         Preparar Pedido
       </button>
       <button
         type="button"
         data-testid="seller_order_details__button-dispatch-check"
-        disabled={ disebleBottom }
+        disabled={ sellers.status !== 'Preparando' }
+        onClick={ dispatchClick }
       >
         Saiu para Entrega
       </button>
