@@ -18,8 +18,8 @@ function App() {
       <Routes>
         <Route exact path="/register" element={ <Register /> } />
         <Route exact path="/customer/products" element={ <CustomerProducts /> } />
-        <Route exact path="/seller/orders" element={ <SellerOrders /> } />
         <Route exact path="/seller/orders/:id" element={ <SellerOrdersDetails /> } />
+        <Route exact path="/seller/orders" element={ <SellerOrders /> } />
         <Route exact path="/customer/orders/:id" element={ <OrdersDetails /> } />
         <Route exact path="/customer/orders/" element={ <Orders /> } />
         <Route exact path="/customer/checkout" element={ <CheckoutPage /> } />

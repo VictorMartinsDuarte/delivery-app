@@ -8,6 +8,7 @@ function Navbar() {
 
   function handleLogout() {
     clearStorage();
+    localStorage.removeItem('sellerId');
     navigate('/login');
   }
 

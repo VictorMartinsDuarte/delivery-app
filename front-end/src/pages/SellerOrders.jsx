@@ -1,9 +1,11 @@
 import React, { useCallback, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import CardSellerOrders from '../components/CardSellerOrders';
 import Navbar from '../components/Navbar';
 import { apiGetOrdersSeller } from '../services/api';
 
 function SellerOrders() {
+  const navigate = useNavigate();
   const [order, setOrder] = useState([]);
   const sellerOrders = useCallback(async () => {
     const userId = window.localStorage.getItem('sellerId');
@@ -25,16 +27,23 @@ function SellerOrders() {
           index,
         ) => (
           <div key={ index }>
-            <CardSellerOrders
-              index={ index }
-              key={ id }
-              id={ id }
-              date={ saleDate }
-              price={ totalPrice }
-              status={ status }
-              address={ deliveryAddress }
-              addressNumber={ deliveryNumber }
-            />
+            <button
+              key={ index }
+              type="button"
+              onClick={ () => navigate(`/seller/orders/${id}`) }
+            >
+              <CardSellerOrders
+                index={ index }
+                key={ id }
+                id={ id }
+                date={ saleDate }
+                price={ totalPrice }
+                status={ status }
+                address={ deliveryAddress }
+                addressNumber={ deliveryNumber }
+              />
+
+            </button>
           </div>
         ),
       )}
