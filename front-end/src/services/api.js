@@ -87,6 +87,22 @@ const apiRegisterAdmin = async (object, token) => {
         Authorization: `${token}`,
       },
     });
+    return response;
+  } catch (err) {
+    return false;
+  }
+};
+
+const apiDeleteAdmin = async (idUser, token) => {
+  try {
+    const response = await api.delete(
+      '/admin',
+      { data: { id: idUser },
+        headers: {
+          Authorization: `${token}`,
+        },
+      },
+    );
     return response.status;
   } catch (err) {
     return false;
@@ -97,9 +113,18 @@ const apiGetOrders = async (idUser) => {
   const response = await api.get(`/orders/${idUser}`);
   return response.data;
 };
+const apiGetOrdersSeller = async (idUser) => {
+  const response = await api.get(`/orders/seller/${idUser}`);
+  return response.data;
+};
 
 const apiGetSellers = async (idSeller) => {
   const response = await api.get(`/salesproducts/${idSeller}`);
+  return response.data;
+};
+
+const apiupdateSeler = async (idSeller, statusSeller) => {
+  const response = await api.put(`/seller/orders/${idSeller}`, { status: statusSeller });
   return response.data;
 };
 
@@ -112,4 +137,7 @@ export { apiLogin,
   findGetusersSeller,
   apiRegisterAdmin,
   apiGetOrders,
-  apiGetSellers };
+  apiGetSellers,
+  apiupdateSeler,
+  apiGetOrdersSeller,
+  apiDeleteAdmin };

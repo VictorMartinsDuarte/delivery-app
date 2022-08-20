@@ -8,7 +8,19 @@ function Navbar() {
 
   function handleLogout() {
     clearStorage();
+    localStorage.removeItem('sellerId');
     navigate('/login');
+  }
+
+  function handleOrders() {
+    const sellerId = window.localStorage.getItem('sellerId');
+    const objUser = JSON.parse(sellerId);
+    if (objUser) {
+      navigate('/seller/orders');
+    }
+    if (!objUser) {
+      navigate('/customer/orders');
+    }
   }
 
   return (
@@ -21,7 +33,7 @@ function Navbar() {
         Produtos
       </button>
       <button
-        onClick={ () => navigate('/customer/orders') }
+        onClick={ handleOrders }
         data-testid="customer_products__element-navbar-link-orders"
         type="button"
       >
