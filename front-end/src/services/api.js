@@ -87,7 +87,7 @@ const apiRegisterAdmin = async (object, token) => {
         Authorization: `${token}`,
       },
     });
-    return response.status;
+    return response;
   } catch (err) {
     return false;
   }

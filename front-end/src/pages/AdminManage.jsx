@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import Navbar from '../components/Navbar';
 import TableUsers from '../components/TableUsers';
-import { apiRegisterAdmin } from '../services/api';
+import { apiRegisterAdmin, apiGetUsers, apiDeleteAdmin } from '../services/api';
 
 function AdminManage() {
   const MAX_LENGTH_NAME = 12;
@@ -15,6 +15,13 @@ function AdminManage() {
   const [password, setPassword] = useState('');
   const [role, setRole] = useState('seller');
   const [error, setError] = useState(false);
+  const [usersAllTable, setusersAllTable] = useState([]);
+
+  const userssellers = useCallback(async () => {
+    const users = await apiGetUsers();
+    const usersAll = users.filter((e) => e.role !== 'administrator');
+    setusersAllTable(usersAll);
+  }, [setusersAllTable]);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -29,17 +36,27 @@ function AdminManage() {
     };
 
     const userRegister = await apiRegisterAdmin(postObject, token);
-    if (userRegister === STATUS_CREATED) {
+    if (userRegister.status === STATUS_CREATED) {
       setError(false);
+      await userssellers();
     }
-    setError(true);
+    if (userRegister.status !== STATUS_CREATED) {
+      setError(true);
+    }
   };
 
   useEffect(() => {
     const user = JSON.parse(window.localStorage.getItem('user'));
     const { token } = user;
+    userssellers();
     settoken(token);
   }, []);
+
+  const handleRemove = async (id) => {
+    await apiDeleteAdmin(id, tokenAdmin);
+    const remove = usersAllTable.filter((e) => e.id !== id);
+    setusersAllTable(remove);
+  };
 
   return (
     <div>
@@ -83,7 +100,25 @@ function AdminManage() {
           </span>
         )}
       </div>
-      <TableUsers token={ tokenAdmin } />
+      {usersAllTable ? usersAllTable.map((e, index) => (
+        <div key={ e.id }>
+          <TableUsers
+            key={ e.id }
+            id={ e.id }
+            index={ index }
+            name={ e.name }
+            email={ e.email }
+            role={ e.role }
+          />
+          <button
+            data-testid={ `admin_manage__element-user-table-remove-${index}` }
+            onClick={ () => handleRemove(e.id) }
+            type="button"
+          >
+            Excluir
+          </button>
+        </div>
+      )) : null}
     </div>
   );
 }
