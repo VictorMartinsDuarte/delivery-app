@@ -1,5 +1,5 @@
 const md5 = require('md5');
-const { Users } = require('../database/models');
+const { Users, Sales } = require('../database/models');
 const { generateJWT } = require('../auth/jwt');
 
 const FindUser = async (email) => {
@@ -31,4 +31,23 @@ const Login = async ({ email, password }) => {
   return { name, email: user.email, role, token };
 };
 
-module.exports = { FindUser, CreateUser, Login, FindAllUser, FindUserByName };
+const DeleteUser = async (id) => {
+  const foundUser = await Users.findByPk(id);
+  if (foundUser.role === 'seller') {
+    await Sales.destroy({ where: { sellerId: id } });
+    await Users.destroy({ where: { id } });
+  }
+  if (foundUser.role === 'customer') {
+    await Sales.destroy({ where: { userId: id } });
+    await Users.destroy({ where: { id } });
+  }
+  return true;
+};
+
+module.exports = { 
+  FindUser,
+  CreateUser,
+  Login,
+  FindAllUser,
+  FindUserByName,
+  DeleteUser };

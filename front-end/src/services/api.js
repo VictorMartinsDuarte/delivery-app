@@ -87,21 +87,46 @@ const apiRegisterAdmin = async (object, token) => {
         Authorization: `${token}`,
       },
     });
+    return response;
+  } catch (err) {
+    return false;
+  }
+};
+
+const apiDeleteAdmin = async (idUser, token) => {
+  try {
+    const response = await api.delete(
+      '/admin',
+      { data: { id: idUser },
+        headers: {
+          Authorization: `${token}`,
+        },
+      },
+    );
     return response.status;
   } catch (err) {
     return false;
   }
 };
 
-// const apiPostSalesProducts = async (idseller, arrayProducts) => {
-//   arrayProducts.forEach(async (element) => {
-//     await api.post('/salesproducts', {
-//       saleId: idseller,
-//       productId: element.id,
-//       quantity: element.quantity,
-//     });
-//   });
-// };
+const apiGetOrders = async (idUser) => {
+  const response = await api.get(`/orders/${idUser}`);
+  return response.data;
+};
+const apiGetOrdersSeller = async (idUser) => {
+  const response = await api.get(`/orders/seller/${idUser}`);
+  return response.data;
+};
+
+const apiGetSellers = async (idSeller) => {
+  const response = await api.get(`/salesproducts/${idSeller}`);
+  return response.data;
+};
+
+const apiupdateSeler = async (idSeller, statusSeller) => {
+  const response = await api.put(`/seller/orders/${idSeller}`, { status: statusSeller });
+  return response.data;
+};
 
 export { apiLogin,
   apiRegister,
@@ -110,4 +135,9 @@ export { apiLogin,
   apiPostSellers,
   findGetusersCostumer,
   findGetusersSeller,
-  apiRegisterAdmin };
+  apiRegisterAdmin,
+  apiGetOrders,
+  apiGetSellers,
+  apiupdateSeler,
+  apiGetOrdersSeller,
+  apiDeleteAdmin };

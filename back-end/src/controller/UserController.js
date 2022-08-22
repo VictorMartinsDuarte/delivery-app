@@ -44,4 +44,10 @@ const CreateByAdmin = async (req, res, next) => {
   }
 };
 
-module.exports = { FindAllUser, CreateUser, Login, CreateByAdmin };
+const deleteUser = async (req, res, _next) => {
+    const { id } = req.body;
+    await UserService.DeleteUser(id);
+    return res.status(200).end();
+};
+
+module.exports = { FindAllUser, CreateUser, Login, CreateByAdmin, deleteUser };

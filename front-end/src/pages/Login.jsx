@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { apiLogin } from '../services/api';
+import { apiLogin, findGetusersCostumer } from '../services/api';
 import { saveStorage } from '../services/storage';
 
 function Login() {
@@ -22,6 +22,17 @@ function Login() {
     navigate('/register');
   }
 
+  const getUserId = async () => {
+    const userId = window.localStorage.getItem('user');
+    if (userId) {
+      navigate('/customer/products');
+    }
+  };
+
+  useEffect(() => {
+    getUserId();
+  }, []);
+
   async function handleSubmit(event) {
     event.preventDefault();
     const userLogin = await apiLogin(email, password);
@@ -32,6 +43,13 @@ function Login() {
     }
     if (userLogin.role === 'administrator') {
       navigate('/admin/manage');
+    }
+    if (userLogin.role === 'seller') {
+      const sellerId = window.localStorage.getItem('user');
+      const objUser = JSON.parse(sellerId);
+      const [user] = await findGetusersCostumer(objUser.email);
+      window.localStorage.setItem('sellerId', JSON.stringify(user.id));
+      navigate('/seller/orders');
     }
     setError(true);
   }

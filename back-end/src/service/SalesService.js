@@ -6,4 +6,11 @@ const getAllSales = async (email) => {
     return foundSales;
 };
 
-module.exports = { getAllSales };
+const updateSales = async (id, status) => {
+  const finbyidSale = await Sales.findOne({ where: { id } });
+  finbyidSale.status = status;
+        await finbyidSale.save();
+    return true;
+};
+
+module.exports = { getAllSales, updateSales };
