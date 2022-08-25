@@ -19,7 +19,6 @@ const FindAllUser = async () => {
 
 const CreateUser = async (name, email, password, role) => {
   const newUser = await Users.create({ name, email, password, role });
-  console.log(newUser);
   return newUser;
 };
 
