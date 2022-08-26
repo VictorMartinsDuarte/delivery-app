@@ -1,15 +1,16 @@
 const { Sales, Users } = require('../database/models');
 
 const getAllSales = async (email) => {
-  const { dataValues } = await Users.findOne({ where: { email } });
-  const foundSales = await Sales.findAll({ where: dataValues.id });
+  const User = await Users.findOne({ where: { email } });
+  const foundSales = await Sales.findAll({ where: User.id });
     return foundSales;
 };
 
-const updateSales = async (id, status) => {
-  const finbyidSale = await Sales.findOne({ where: { id } });
-  finbyidSale.status = status;
-        await finbyidSale.save();
+const updateSales = async (id, statusUpdate) => {
+await Sales.update(
+  { status: statusUpdate },
+  { where: { id } },
+  );
     return true;
 };
 
