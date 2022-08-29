@@ -6,9 +6,9 @@ const Users = require('../mocks/usersMocks');
     create: async () => Users.NewuserMock,
   };
 
-  const UserSales = {
-    findOne: async () => Users.userMock,
-  };
+  // const UserSales = {
+  //   findOne: async () => Users.userMock,
+  // };
 
   const NewUser = {
     findOne: async () => undefined,
@@ -23,7 +23,6 @@ const Users = require('../mocks/usersMocks');
 
   const AdminUserDelete = {
     findByPk: async () => Users.userMock,
-    destroy: async () => Users.userMock.role,
   };
   
   module.exports = {
@@ -31,5 +30,4 @@ const Users = require('../mocks/usersMocks');
     NewUser,
     AdminUser,
     AdminUserDelete,
-    UserSales
   };
