@@ -106,7 +106,7 @@ describe('Tests on create User layers', () => {
     let response = {}
         before(async () => {
           response = await chai.request(server).post('/admin').set({
-            Authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxLCJuYW1lIjoiRGVsaXZlcnkgQXBwIEFkbWluIiwiZW1haWwiOiJhZG1AZGVsaXZlcnlhcHAuY29tIiwicGFzc3dvcmQiOiJhNGM4NmVkZWNjNWFlZTA2ZWZmOGZkZWRhNjllMGQwNCIsInJvbGUiOiJhZG1pbmlzdHJhdG9yIn0sImlhdCI6MTY2MTc5ODIzNiwiZXhwIjoxNjYxODE5ODM2fQ.Yqz5caMNpBeCZsj3KUKfqywMCL61t5kZGsdTwmldlkk"
+            Authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxLCJuYW1lIjoiRGVsaXZlcnkgQXBwIEFkbWluIiwiZW1haWwiOiJhZG1AZGVsaXZlcnlhcHAuY29tIiwicGFzc3dvcmQiOiJhNGM4NmVkZWNjNWFlZTA2ZWZmOGZkZWRhNjllMGQwNCIsInJvbGUiOiJhZG1pbmlzdHJhdG9yIn0sImlhdCI6MTY2MTk3NzU2MSwiZXhwIjoxNjYxOTk5MTYxfQ.VhXxaF2c6d5JX1SP9_H8anSVyskygZVXCju2omnUZtw"
           }).send(user2)
         });
         it('A requisição create retorna o status correto', () => {
@@ -192,7 +192,7 @@ describe('Tests on delete User layers', () => {
     let response = {}
         before(async () => {
           response = await chai.request(server).delete('/admin').set({
-            Authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxLCJuYW1lIjoiRGVsaXZlcnkgQXBwIEFkbWluIiwiZW1haWwiOiJhZG1AZGVsaXZlcnlhcHAuY29tIiwicGFzc3dvcmQiOiJhNGM4NmVkZWNjNWFlZTA2ZWZmOGZkZWRhNjllMGQwNCIsInJvbGUiOiJhZG1pbmlzdHJhdG9yIn0sImlhdCI6MTY2MTc5ODIzNiwiZXhwIjoxNjYxODE5ODM2fQ.Yqz5caMNpBeCZsj3KUKfqywMCL61t5kZGsdTwmldlkk"
+            Authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxLCJuYW1lIjoiRGVsaXZlcnkgQXBwIEFkbWluIiwiZW1haWwiOiJhZG1AZGVsaXZlcnlhcHAuY29tIiwicGFzc3dvcmQiOiJhNGM4NmVkZWNjNWFlZTA2ZWZmOGZkZWRhNjllMGQwNCIsInJvbGUiOiJhZG1pbmlzdHJhdG9yIn0sImlhdCI6MTY2MTk3NzU2MSwiZXhwIjoxNjYxOTk5MTYxfQ.VhXxaF2c6d5JX1SP9_H8anSVyskygZVXCju2omnUZtw"
           }).send(user2)
         });
         it('A requisição delete retorna o status correto', () => {

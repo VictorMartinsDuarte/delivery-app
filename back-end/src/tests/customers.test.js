@@ -57,7 +57,7 @@ describe('Tests on create sales', () => {
       let response = []
           before(async () => {
             response = await chai.request(server).post('/customer/checkout').set({
-              Authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxLCJuYW1lIjoiRGVsaXZlcnkgQXBwIEFkbWluIiwiZW1haWwiOiJhZG1AZGVsaXZlcnlhcHAuY29tIiwicGFzc3dvcmQiOiJhNGM4NmVkZWNjNWFlZTA2ZWZmOGZkZWRhNjllMGQwNCIsInJvbGUiOiJhZG1pbmlzdHJhdG9yIn0sImlhdCI6MTY2MTc5ODIzNiwiZXhwIjoxNjYxODE5ODM2fQ.Yqz5caMNpBeCZsj3KUKfqywMCL61t5kZGsdTwmldlkk"
+              Authorization: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJkYXRhIjp7ImlkIjoxLCJuYW1lIjoiRGVsaXZlcnkgQXBwIEFkbWluIiwiZW1haWwiOiJhZG1AZGVsaXZlcnlhcHAuY29tIiwicGFzc3dvcmQiOiJhNGM4NmVkZWNjNWFlZTA2ZWZmOGZkZWRhNjllMGQwNCIsInJvbGUiOiJhZG1pbmlzdHJhdG9yIn0sImlhdCI6MTY2MTk3NzU2MSwiZXhwIjoxNjYxOTk5MTYxfQ.VhXxaF2c6d5JX1SP9_H8anSVyskygZVXCju2omnUZtw"
             }).send(createSaleMock)
           });
           it('A requisição da chamada customer/checkout retorna um status 201', () => {
