@@ -55,7 +55,7 @@ function Login() {
   }
 
   return (
-    <form id="container" onSubmit={ loginClick }>
+    <form data-testid="container" onSubmit={ loginClick }>
       <div className="inputs">
         <input
           data-testid="common_login__input-email"

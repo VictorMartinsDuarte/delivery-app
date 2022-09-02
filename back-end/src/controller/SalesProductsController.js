@@ -8,7 +8,7 @@ const createSaleProducts = async (req, res, _next) => {
 const getSaleProducts = async (req, res, _next) => {
     const { id } = req.params;
     const data = await SalesProductsService.getSalesProducts(id);
-    return res.status(201).json(data);
+    return res.status(200).json(data);
 };
 
 module.exports = { createSaleProducts, getSaleProducts };
